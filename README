@@ -1,0 +1,20 @@
+Bingo Caller
+------------
+
+This app is Catalyst based (perl) and is designed to be a web based simple bingo machine, that would be used at a bingo evening.
+
+Objective:
+
+Set a game up (location, max_number_drawn value, assume lowest value will be 1, number_of_seconds before next number can be drawn)
+
+Click to 'draw' a random number from the range 1 -> max_number_drawn.
+
+Display that.
+
+After number_of_seconds, allow to click to draw another, unique random number.
+
+Button to press if someone calls bingo, which will bring up grid of previously called numbers, highlighting last number called.
+
+Allow to restart game if bingo was not correct, else freeze game, and allow new game to be started.
+
+Show previous 10 numbers drawn at the bottom of the screen, as game is progressing.
