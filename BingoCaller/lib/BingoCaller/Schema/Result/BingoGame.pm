@@ -41,6 +41,13 @@ __PACKAGE__->table("bingo_game");
   is_nullable: 0
   size: undef
 
+=head2 seconds_between_calls
+
+  data_type: INTEGER
+  default_value: 5
+  is_nullable: 0
+  size: undef
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -65,12 +72,14 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     size => undef,
   },
+  "seconds_between_calls",
+  { data_type => "INTEGER", default_value => 5, is_nullable => 0, size => undef },
 );
 __PACKAGE__->set_primary_key("game_id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.05000 @ 2010-11-21 08:46:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:QdfX/sGj6RqTCymcQwQ30A
+# Created by DBIx::Class::Schema::Loader v0.05000 @ 2010-11-22 08:01:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LLCXLBkomYhe+CrGyyQDBw
 
 __PACKAGE__->belongs_to( q{location}, q{BingoCaller::Schema::Location}, 
   { location_id => q{location_id} },

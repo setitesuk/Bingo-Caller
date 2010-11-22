@@ -1,7 +1,8 @@
 create table bingo_game (
   game_id INTEGER PRIMARY KEY NOT NULL,
   location_id INTEGER NOT NULL,
-  max_bingo_value INTEGER NOT NULL
+  max_bingo_value INTEGER NOT NULL,
+  seconds_between_calls INTEGER NOT NULL DEFAULT 5
 );
 
 create table location (
