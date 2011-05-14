@@ -16,5 +16,12 @@ create table drawn_numbers (
   order_drawn INTEGER NOT NULL
 );
 
+create table numbers (
+  game_id INTEGER NOT NULL,
+  drawn_numbers TEXT,
+  remaining_numbers TEXT
+);
+
 CREATE UNIQUE INDEX game_drawnno on drawn_numbers (game_id, drawn_number);
+CREATE UNIQUE INDEX game_numbers on numbers (game_id);
 CREATE UNIQUE INDEX loc_name on location (name);

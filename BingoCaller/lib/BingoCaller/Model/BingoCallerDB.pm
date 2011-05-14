@@ -1,4 +1,4 @@
-package BingoCaller::Model::DBIC;
+package BingoCaller::Model::BingoCallerDB;
 
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
@@ -7,7 +7,7 @@ __PACKAGE__->config(
     schema_class => 'BingoCaller::Schema',
     
     connect_info => {
-        dsn => 'dbi:SQLite:root/database',
+        dsn => 'dbi:SQLite:root/db/bingo_calls.db',
         user => '',
         password => '',
     }
@@ -15,7 +15,7 @@ __PACKAGE__->config(
 
 =head1 NAME
 
-BingoCaller::Model::DBIC - Catalyst DBIC Schema Model
+BingoCaller::Model::BingoCallerDB - Catalyst DBIC Schema Model
 
 =head1 SYNOPSIS
 

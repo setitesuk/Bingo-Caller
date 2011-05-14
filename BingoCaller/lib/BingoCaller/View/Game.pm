@@ -1,23 +1,15 @@
-package BingoCaller::View::TT;
+package BingoCaller::View::Game;
 
 use strict;
 use warnings;
 
 use base 'Catalyst::View::TT';
 
-__PACKAGE__->config(
-  TEMPLATE_EXTENSION => '.tt',
-  EVAL_PERL => 1,
-  WRAPPER => q{bingocaller_wrapper.tt},
-  INCLUDE_PATH => [
-      BingoCaller->path_to( 'root', 'src' ),
-    ],
-#	LOAD_FILTERS => [ $FILTERS ],
-);
+__PACKAGE__->config(TEMPLATE_EXTENSION => '.tt');
 
 =head1 NAME
 
-BingoCaller::View::TT - TT View for BingoCaller
+BingoCaller::View::Game - TT View for BingoCaller
 
 =head1 DESCRIPTION
 

@@ -1,4 +1,4 @@
-package BingoCaller::Schema::Result::DrawnNumber;
+package BingoCaller::Schema::Result::Number;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
@@ -12,11 +12,11 @@ __PACKAGE__->load_components("InflateColumn::DateTime");
 
 =head1 NAME
 
-BingoCaller::Schema::Result::DrawnNumber
+BingoCaller::Schema::Result::Number
 
 =cut
 
-__PACKAGE__->table("drawn_numbers");
+__PACKAGE__->table("numbers");
 
 =head1 ACCESSORS
 
@@ -27,18 +27,18 @@ __PACKAGE__->table("drawn_numbers");
   is_nullable: 0
   size: undef
 
-=head2 drawn_number
+=head2 drawn_numbers
 
-  data_type: INTEGER
+  data_type: TEXT
   default_value: undef
-  is_nullable: 0
+  is_nullable: 1
   size: undef
 
-=head2 order_drawn
+=head2 remaining_numbers
 
-  data_type: INTEGER
+  data_type: TEXT
   default_value: undef
-  is_nullable: 0
+  is_nullable: 1
   size: undef
 
 =cut
@@ -51,32 +51,33 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     size => undef,
   },
-  "drawn_number",
+  "drawn_numbers",
   {
-    data_type => "INTEGER",
+    data_type => "TEXT",
     default_value => undef,
-    is_nullable => 0,
+    is_nullable => 1,
     size => undef,
   },
-  "order_drawn",
+  "remaining_numbers",
   {
-    data_type => "INTEGER",
+    data_type => "TEXT",
     default_value => undef,
-    is_nullable => 0,
+    is_nullable => 1,
     size => undef,
   },
 );
 
 
 # Created by DBIx::Class::Schema::Loader v0.05000 @ 2011-05-14 11:48:27
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ygQfG7valMWkJ8Z9FWVDXw
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:hRMEO1UeRS7DTmgyPXeLdw
 
 
 __PACKAGE__->add_unique_constraint( 
-  game_drawnno => [ qw{ game_id drawn_number } ],
+  game_drawnno => [ qw{ game_id } ],
 );
 
 __PACKAGE__->belongs_to( q{game}, q{BingoCaller::Schema::BingoGame}, 
   { game_id => q{game_id} },
 );
+
 1;

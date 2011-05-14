@@ -78,14 +78,19 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("game_id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.05000 @ 2010-11-22 08:01:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:LLCXLBkomYhe+CrGyyQDBw
+# Created by DBIx::Class::Schema::Loader v0.05000 @ 2011-05-14 11:48:27
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sg5/jh7Y5H4HRbE8z6nMAA
+
 
 __PACKAGE__->belongs_to( q{location}, q{BingoCaller::Schema::Location}, 
   { location_id => q{location_id} },
 );
 
 __PACKAGE__->has_many( q{drawn_numbers}, q{BingoCaller::Schema::DrawnNumber},
+  { q{foreign.game_id} => q{self.game_id} },
+);
+
+__PACKAGE__->has_many( q{numbers}, q{BingoCaller::Schema::Number},
   { q{foreign.game_id} => q{self.game_id} },
 );
 1;

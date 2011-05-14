@@ -1,0 +1,12 @@
+[% PROCESS called_numbers.tt %]
+
+<form name="line_win" method=POST action="draw_next_ball">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="hidden" value="1" name="line_drawn" />
+  <input type="submit" value="LINE OK - EYES DOWN FOR A FULL HOUSE" />
+</form>
+<form name="line_bad" method=POST action="draw_next_ball">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="hidden" value="0" name="line_drawn" />
+  <input type="submit" value="LINE CALL BAD - EYES DOWN" />
+</form>

@@ -1,0 +1,25 @@
+<h1>[% drawn_number %]</h1>
+
+<h3>[% model( 'DrawNumber' ).last_five_numbers %]</h3>
+<table border="1">
+  <tr>[% FOREACH num IN draw_number_model.last_five_numbers -%]
+  <td><h2>[% num %]</h2></td>[% END %]</tr>
+</table>
+
+<form name="draw_ball" method=POST action="draw_next_ball">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="hidden" value="[% line_drawn %]" name="line_drawn" />
+  <input type="submit" value="DRAW" />
+</form>
+[% IF line_drawn != 0 %]
+<form name="house" method=POST action="house">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="submit" value="HOUSE" />
+</form>
+[% ELSE %]
+<form name="line" method=POST action="line">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="submit" value="LINE" />
+</form>
+[% END %]
+

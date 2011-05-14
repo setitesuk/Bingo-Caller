@@ -1,0 +1,14 @@
+[% WRAPPER page.tt title = c.config.name ; END %]
+
+[% IF house_won %]
+  <h1>Congratulations to the winners.</h1>
+  <p>Lets start a new game!</p>
+[% END %]
+
+
+<form name="game_details" method=POST action="game_setup">
+  Location: <input type="text" name="location" value="" title="location" /><br />
+  Max Draw Ball:<input type="text" name="max_ball" value="90" title="Max Draw Ball" /><br />
+  <input type="submit" value="Setup Game" />
+  <input type="reset" value="reset" />
+</form>

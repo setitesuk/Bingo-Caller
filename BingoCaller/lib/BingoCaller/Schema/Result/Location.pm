@@ -55,8 +55,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("location_id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.05000 @ 2010-11-21 08:46:38
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:l5D0asF79549Ci5bL6bMWg
+# Created by DBIx::Class::Schema::Loader v0.05000 @ 2011-05-14 11:48:27
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Epj3i1ZftJ17ePID1l0ZKA
 
 
 __PACKAGE__->add_unique_constraint( 

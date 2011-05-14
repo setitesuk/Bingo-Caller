@@ -1,0 +1,7 @@
+<p>Location = [% location %]<br />
+Game     = [% game_id %]</p>
+
+<form name="start_game" method=POST action="game_start">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="submit" value="Eyes Down" />
+</form>

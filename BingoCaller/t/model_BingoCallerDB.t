@@ -2,6 +2,6 @@ use strict;
 use warnings;
 use Test::More;
 
-BEGIN { use_ok 'BingoCaller::Model::DBIC' }
+BEGIN { use_ok 'BingoCaller::Model::BingoCallerDB' }
 
 done_testing();

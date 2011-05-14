@@ -1,0 +1,10 @@
+[% PROCESS called_numbers.tt %]
+
+<form name="house_win" method=POST action="house_won">
+  <input type="submit" value="HOUSE OK" />
+</form>
+<form name="house_bad" method=POST action="draw_next_ball">
+  <input type="hidden" value="[% game_id %]" name="game_id" />
+  <input type="hidden" value="[% line_drawn %]" name="line_drawn" />
+  <input type="submit" value="HOUSE CALL BAD" />
+</form>
