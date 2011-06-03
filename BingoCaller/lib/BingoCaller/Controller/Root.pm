@@ -87,11 +87,12 @@ sub game_start :Local {
   my $drawnumber = $c->model( 'DrawNumber' );
   $drawnumber->game_id( $c->req->body_params->{game_id} );
   $drawnumber->context( $c );
-warn $c;
-warn $drawnumber->context();
+
+  my $line_drawn = $c->req->body_params->{line_drawn} || 0;
   $c->stash(
     game_id => $drawnumber->game_id(),
-    line_drawn => 0,
+#    ball_img => $drawnumber->ball_img( $drawnumber ),
+    line_drawn => $line_drawn,
     drawn_number => $drawnumber->draw_number(),
     draw_number_model => $drawnumber,
     template => 'draw_number.tt',
@@ -183,6 +184,22 @@ sub default :Path {
     my ( $self, $c ) = @_;
     $c->response->body( 'Page not found' );
     $c->response->status(404);
+}
+
+=head2 ball_image
+
+=cut
+
+sub ball_image :Local {
+  my ( $self, $c ) = @_;
+
+  my $ball = $c->req->params->{ball_number};
+  use Test::More; diag explain $c->req->params();
+  my $drawnumber = $c->model( 'DrawNumber' );
+
+  $c->res->content_type(qq{img/png});
+  $c->res->body( $drawnumber->ball_img( $ball ) );
+  return;
 }
 
 =head2 end

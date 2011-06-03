@@ -11,6 +11,7 @@ package BingoCaller::Model::DrawNumber;
 use strict;
 use warnings;
 use Carp;
+use English qw{no_match_vars};
 use Readonly; Readonly::Scalar our $VERSION => do { my ($r) = q$Revision: 8991 $ =~ /(\d+)/mxs; $r; };
 
 use List::Util qw( shuffle );
@@ -79,6 +80,25 @@ sub draw_number {
   return $next_number;
 }
 
+sub ball_img {
+  my ( $self, $drawnumber ) = @_;
+
+  my $filename = 'root/balls/ball_' .  $drawnumber .'.png';
+
+  my $img;
+  eval {
+    open my $fh, '<', $filename or croak "could not open $!:$EVAL_ERROR";
+
+    binmode $fh;
+    $fh->read($img, 30_000);
+  } or do {
+    croak $EVAL_ERROR;
+  };
+#  print FH $png;close FH;  my $img;
+
+  return $img;
+}
+
 sub last_drawn_number {
   my ( $self ) = @_;
 
@@ -144,10 +164,8 @@ sub remaining_numbers {
     },
   );
 
-warn scalar ($number_rs[0]->remaining_numbers());
   my @remaining_numbers = split /[ ]/xms, $number_rs[0]->remaining_numbers();
-#  my @remaining_numbers = split / /xms, $number_rs->get_column( 'remaining_numbers' );
-warn scalar @remaining_numbers;  
+
   return @remaining_numbers;
 }
 

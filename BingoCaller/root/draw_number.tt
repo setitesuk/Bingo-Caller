@@ -1,16 +1,23 @@
-<h1>[% drawn_number %]</h1>
+<center><!--img src="file:///Users/ajb/dev/github_projects/Bingo-Caller/BingoCaller/root/balls/ball_[% drawn_number %].png" alt="[% drawn_number %]"-->
 
-<h3>[% model( 'DrawNumber' ).last_five_numbers %]</h3>
+<img src="ball_image?ball_number=[% drawn_number %]" />
+
+</center>
+<center>
+<table border="0">
+  <tr><td>
+<center><h3>[% model( 'DrawNumber' ).last_five_numbers %]</h3>
 <table border="1">
   <tr>[% FOREACH num IN draw_number_model.last_five_numbers -%]
   <td><h2>[% num %]</h2></td>[% END %]</tr>
 </table>
-
+</center></td><td>
+<center>
 <form name="draw_ball" method=POST action="draw_next_ball">
   <input type="hidden" value="[% game_id %]" name="game_id" />
   <input type="hidden" value="[% line_drawn %]" name="line_drawn" />
   <input type="submit" value="DRAW" />
-</form>
+</form></center></td><td><center>
 [% IF line_drawn != 0 %]
 <form name="house" method=POST action="house">
   <input type="hidden" value="[% game_id %]" name="game_id" />
@@ -22,4 +29,7 @@
   <input type="submit" value="LINE" />
 </form>
 [% END %]
-
+</center></td>
+  </tr>
+</table>
+</center>
