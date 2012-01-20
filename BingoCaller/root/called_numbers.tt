@@ -1,10 +1,9 @@
 <h1>Last Drawn Number: [% last_drawn_number %]</h1>
 <p>All Numbers</p>
-[% count = 0 %]
+[% count = 1 %]
 <table border="1">
-  <tr>[% FOREACH num IN draw_number_model.sorted_drawn_numbers -%]
-  [% IF count < 9 %]<td><h2>[% num %]</h2></td>[% count = count + 1 %]
-  [% ELSE -%][% count = 0 %]</tr>
-  <tr><td><h2>[% num %]</h2></td>[% END -%] 
-[% END %]</tr>
+  [% FOREACH num IN draw_number_model.all_numbers -%]
+  [% IF count == 1 %]<tr>[% END -%]
+  <td><h2><font color="[% IF draw_number_model.is_drawn_number("$num") %]black[% ELSE %]red[% END %]">[% num %]</font></h2></td>
+[% IF count == 10 %]</tr>[% count = 0 %][% END %][% count = count + 1 %][% END %]</tr>
 </table>

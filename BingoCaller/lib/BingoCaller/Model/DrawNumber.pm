@@ -15,6 +15,7 @@ use English qw{no_match_vars};
 use Readonly; Readonly::Scalar our $VERSION => do { my ($r) = q$Revision: 8991 $ =~ /(\d+)/mxs; $r; };
 
 use List::Util qw( shuffle );
+use List::MoreUtils qw{ any };
 
 use base 'Catalyst::Model';
 
@@ -120,6 +121,31 @@ sub last_five_numbers {
   return @last_five;
 }
 
+sub game_max_value {
+  my ( $self ) = @_;
+  
+  my $c = $self->context;
+
+  my @number_rs = $c->model( 'BingoCallerDB::BingoGame' )->search(
+    {
+      game_id => $self->game_id(),
+    },
+    {
+      columns => [qw/max_bingo_value/],
+    },
+  );
+  if ( ! $number_rs[0]->max_bingo_value() ) {
+    return (1);
+  }
+
+  return $number_rs[0]->max_bingo_value();
+}
+
+sub all_numbers {
+  my ( $self ) = @_;
+  return ( 1..$self->game_max_value );
+}
+
 sub drawn_numbers {
   my ( $self ) = @_;
 
@@ -133,7 +159,7 @@ sub drawn_numbers {
       columns => [qw/drawn_numbers/],
     },
   );
-warn $number_rs[0]->drawn_numbers();
+#warn $number_rs[0]->drawn_numbers();
   if ( ! $number_rs[0]->drawn_numbers() ) {
     return ();
   }
@@ -188,6 +214,29 @@ sub store {
 
   return;
 }
+
+sub clear_drawn_numbers_cache {
+  my ( $self ) = @_;
+  $self->{_call_drawn_numbers} = undef;
+  return 1;
+}
+
+sub _call_drawn_numbers {
+  my ( $self ) = @_;
+  if ( ! $self->{_call_drawn_numbers} ) {
+    $self->{_call_drawn_numbers} = [ $self->drawn_numbers ],
+  }
+  return $self->{_call_drawn_numbers};
+}
+
+sub is_drawn_number {
+  my ( $self, $number ) = @_;
+  warn join q{:}, @{ $self->_call_drawn_numbers };
+  my $result = any { $number == $_ } @{ $self->_call_drawn_numbers };
+  warn $number . q{:} . $result;
+  return $result;
+}
+
 
 1;
 __END__

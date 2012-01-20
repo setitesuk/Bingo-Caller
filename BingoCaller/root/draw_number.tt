@@ -1,6 +1,6 @@
 <center><!--img src="file:///Users/ajb/dev/github_projects/Bingo-Caller/BingoCaller/root/balls/ball_[% drawn_number %].png" alt="[% drawn_number %]"-->
 
-<img src="ball_image?ball_number=[% drawn_number %]" />
+<img src="ball_image?ball_number=[% drawn_number %]" width="1300" height="575" />
 
 </center>
 <center>

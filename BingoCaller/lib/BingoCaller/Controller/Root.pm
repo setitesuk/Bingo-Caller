@@ -87,6 +87,8 @@ sub game_start :Local {
   my $drawnumber = $c->model( 'DrawNumber' );
   $drawnumber->game_id( $c->req->body_params->{game_id} );
   $drawnumber->context( $c );
+  $drawnumber->clear_drawn_numbers_cache();
+
 
   my $line_drawn = $c->req->body_params->{line_drawn} || 0;
   $c->stash(
@@ -131,6 +133,7 @@ sub house :Local {
   my $drawnumber = $c->model( 'DrawNumber' );
   $drawnumber->game_id( $c->req->body_params->{game_id} );
   $drawnumber->context( $c );
+  $drawnumber->clear_drawn_numbers_cache();
 
   $c->stash(
     game_id => $drawnumber->game_id(),
@@ -152,6 +155,7 @@ sub line :Local {
   my $drawnumber = $c->model( 'DrawNumber' );
   $drawnumber->game_id( $c->req->body_params->{game_id} );
   $drawnumber->context( $c );
+  $drawnumber->clear_drawn_numbers_cache();
 
   $c->stash(
     game_id => $drawnumber->game_id(),
